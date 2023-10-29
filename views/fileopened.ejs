@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <div id="upper">
+    <h1>Visual Studio Code</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" alt="">
+   <div id="atag"><a href="">File</a> <a href="">Edit</a> <a href="">Selection</a> <a href="">View</a> <a href="">Go</a> 
+    <a href="">Run</a> <a href="">Terminal</a> <a href="">Help</a></div>
+   <div id="icons">
+    <i class="ri-layout-column-fill"></i> <i class="ri-layout-row-fill"></i> <i class="ri-layout-left-line"></i> <i class="ri-layout-2-fill"></i> <i class="ri-subtract-line"></i>  <i class="ri-file-copy-line"></i> <i class="ri-close-line"></i>
+   </div>
+  </div>
+ <div id="main">
+  <div id="continer"> 
+    <div class="container">
+    <div class="profile">
+        <i class="ri-file-copy-line"></i>
+        <span class="name"  id="explorer">Explorer</span>
+    </div>
+    <div class="profile">
+        <i class="ri-search-line"></i>
+        <span class="name"id="search">Search</span>
+    </div>
+<div class="profile" >
+        <i class="ri-git-branch-line"></i>
+        <span class="name" id="share">Source Control</span>
+    </div>
+    <div class="profile">
+        <i class="ri-bug-line"></i>
+        <span class="name" id="run">Run and Debug</span>
+    </div>
+    <div class="profile">
+        <i class="ri-dashboard-line"></i>
+        <span class="name" id="extension">Extensions</span>
+    </div>
+    <div class="profile" id="account">
+        <i class="ri-account-circle-line"></i>
+        <span class="name"  id="accounts">Accounts</span>
+    </div>
+    <div class="profile">
+        <i class="ri-settings-5-line"></i>
+        <span class="name"  id="setting">Manage</span>
+    </div>
+  </div>
+</div>
+  <div id="first">
+    <h1>S VS Code</h1>
+    <div id="nav">
+      <h2>Folder name</h2>
+      <div class="icon">
+        <i id ="fileic" class="ri-file-3-line"></i>
+        <i id ="folderic" class="ri-folder-2-fill"></i>
+        <a href="/"><i id="refersh" class="ri-restart-line"></i></a>
+    </div>
+    </div>
+    <div class="forms">
+      <form action="/createfile">
+          <input id="fileform" type="text" name="filename" placeholder="Filename">
+      </form>
+      <form action="/createfolder">
+          <input id="folderform" type="text" name="foldername" placeholder="Foldername">
+      </form>
+    </div>
+    <% files.forEach(function(file){ %>
+      <% if(file.isFolder === true){ %>
+    <div id="folder">
+        <h3><i class="ri-folder-line"></i><%= file.name %></h3>
+        <div class="ic"><i class="ri-pencil-line"></i>
+          <a href="/folderDeleted/<%= file.name %>"><i class="ri-delete-bin-line"></i></a>
+        </div>
+        </div>
+      <% } else { %>
+        <a href="/file/<%= file.name %>"><div id="file">
+        <h3><i class="ri-file-line"></i><%= file.name %></h3></a>
+        <div class="ic"><i class="ri-pencil-line"></i>
+          <a href="/fileDeleted/<%= file.name %>"><i class="ri-delete-bin-line"></i></a></div>
+        </div>
+      <% } %>
+     <% }) %>
+     </div>
+    <div id="second"  style=" background-color:whitesmoke;">
+      <div id="navi">
+       <div style="border-bottom: 2px solid rgba(78, 74, 74, 0.224); border-right: 2px solid rgba(78, 74, 74, 0.224);" id="opened"><i class="ri-file-line"></i><h3><%= filename %></h3><a href="/"><i class="ri-close-line"></i></a></div>
+     </div>
+     <form action="/dataSaved/<%= filename %>" method="post">
+     <textarea name="dataFile"  id="area"></textarea>
+     <button id="run-code" name="savefile" type="submit">Savedata</button>
+    </form>
+       </div>
+    </div>
+ <script>
+      function onoff() {
+      document.querySelectorAll("#fileform, #folderform")
+        .forEach(function (e) {
+          e.style.display = "none";
+        })
+    }
+  document.querySelector("#fileic").addEventListener("click", function(){
+      onoff();
+     document.querySelector("#fileform").style.display ="initial";
+  })
+  document.querySelector("#folderic").addEventListener("click", function(){
+      onoff();
+     document.querySelector("#folderform").style.display ="initial";
+  })
+  // window.addEventListener("keydown",function(e){
+  //   console.log(e);
+  // })
+  window.addEventListener("keydown", function(e){
+     if(e.keyCode===27){
+      onoff();
+      document.querySelectorAll("form input").forEach(function (elm){
+         elm.value = "";
+      })
+     }
+  })
+ </script>
+</body>
+</html>
